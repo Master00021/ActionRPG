@@ -1,15 +1,13 @@
-using System.Collections.Generic;
-using System.Collections;
 using UnityEngine;
 
-public abstract class Interactable : MonoBehaviour
+internal abstract class Interactable : MonoBehaviour
 {
     protected BoxCollider MyCollider { get; private set; }    
     protected string Name { get; set; }
 
     protected virtual void Awake() {
         MyCollider = GetComponent<BoxCollider>();
-        this.Name = gameObject.name;
+        Name = gameObject.name;
     }
 
     protected void OnTriggerEnter(Collider actor) {
