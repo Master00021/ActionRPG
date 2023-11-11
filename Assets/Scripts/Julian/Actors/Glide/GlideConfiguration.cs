@@ -8,4 +8,5 @@ internal sealed class GlideConfiguration : ScriptableObject {
     public float GravityForce;
     public bool GlidePlayer;
     public bool ImpulsePlayer;    
+    public bool NormalPlayer;
 }

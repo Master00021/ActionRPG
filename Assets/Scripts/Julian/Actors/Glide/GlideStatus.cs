@@ -2,9 +2,9 @@ using System;
 using UnityEngine;
 
 internal enum GlideState {
-    None,
-    Impulsed,
-    Gliding
+    Normal,
+    Impulse,
+    Glide
 }
 
 internal sealed class GlideStatus : MonoBehaviour
@@ -12,8 +12,8 @@ internal sealed class GlideStatus : MonoBehaviour
 
     internal static event Action<GlideState, GlideState> OnGlideStateChanged;
 
-    internal GlideState Current;
-    internal GlideState Previous;
+    [SerializeField] internal GlideState Current;
+    [SerializeField] internal GlideState Previous;
 
     internal void UpdateGlideState(GlideState newGlideState, GlideState previousGlideState) {
         previousGlideState = Current;

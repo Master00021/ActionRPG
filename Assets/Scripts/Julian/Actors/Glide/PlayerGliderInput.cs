@@ -19,7 +19,6 @@ internal sealed class PlayerGliderInput : MonoBehaviour
     }
 
     private void Update() {
-        //print(AllowInput);
         if (!AllowInput) return;
 
         _horizontalInput = Input.GetAxis("Horizontal");

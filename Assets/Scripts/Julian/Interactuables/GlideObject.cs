@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-internal sealed class Glide : Interactable
+internal sealed class GlideObject : Interactable
 {
     internal static event Action OnPlayerEntry;
     internal static event Action OnPlayerExit;
@@ -13,14 +13,14 @@ internal sealed class Glide : Interactable
     internal override void Interact(GameObject actor) {
         if (actor.tag != "Player") return;
 
-        PlayerGliderInput.AllowInput = false;
+        //PlayerGliderInput.AllowInput = false;
         OnPlayerEntry?.Invoke();
     }
 
     private void OnTriggerExit(Collider actor) {
         if (actor.tag != "Player") return;
 
-        PlayerGliderInput.AllowInput = true;
+        //PlayerGliderInput.AllowInput = true;
         OnPlayerExit?.Invoke();
     }
 
