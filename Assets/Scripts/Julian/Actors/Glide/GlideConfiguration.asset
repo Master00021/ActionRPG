@@ -13,6 +13,4 @@ MonoBehaviour:
   m_Name: GlideConfiguration
   m_EditorClassIdentifier: 
   ImpulseForce: 2000
-  GlideSpeed: 7.5
-  GravityForce: 9.81
-  NormalPlayer: 0
+  GlideSpeed: 0

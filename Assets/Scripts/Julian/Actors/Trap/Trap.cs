@@ -17,8 +17,6 @@ internal sealed class Trap {
         _rigidBody = rigidBody;
 
         _stunTime = _trapConfiguration.BossStunTime;
-
-        TrapObject.OnActorDetected += Activate;
     }
 
     private void Activate(GameObject miniBoss, GameObject trap) {
@@ -34,8 +32,7 @@ internal sealed class Trap {
 
     internal void Explode() {
         if (!_selfActivate) return;
-        _deactivateTime = _trapConfiguration.DeactivateTime;
-        
+        /*
         var explisionPosition = new Vector3(_trap.position.x, 
                                             _trap.position.y + _trapConfiguration.ExplosionOffset, 
                                             _trap.position.z);
@@ -46,7 +43,7 @@ internal sealed class Trap {
                                      _trapConfiguration.UpWardsModifier, 
                                      ForceMode.VelocityChange);
         
-        _selfActivate = false;
+        _selfActivate = false;*/
     }
 
     internal void BossStun() {
@@ -72,7 +69,6 @@ internal sealed class Trap {
     }
 
     internal void Disable() {
-        TrapObject.OnActorDetected -= Activate;
     }
 
 }

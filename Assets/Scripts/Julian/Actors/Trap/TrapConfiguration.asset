@@ -12,10 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d31656dac3f263c4ca932be71e43272a, type: 3}
   m_Name: TrapConfiguration
   m_EditorClassIdentifier: 
-  ExplosionRadius: 5
-  ExplosionOffset: 1
-  UpWardsModifier: 10
-  DeactivateTime: 5
-  ExplosionForce: 25
+  TimeToReactivate: 4
   BossStunTime: 2
-  Exploded: 0

@@ -1,27 +1,12 @@
-using System;
 using UnityEngine;
 
-internal sealed class GlideObject : Interactable
-{
-    internal static event Action OnPlayerEntry;
-    internal static event Action OnPlayerExit;
-    
-    protected override void Awake() {
-        base.Awake();
-    }
+internal sealed class GlideObject : MonoBehaviour {
 
-    internal override void Interact(GameObject actor) {
-        if (actor.tag != "Player") return;
+    [SerializeField] private Transform _maxHeight;
 
-        //PlayerGliderInput.AllowInput = false;
-        OnPlayerEntry?.Invoke();
-    }
-
-    private void OnTriggerExit(Collider actor) {
-        if (actor.tag != "Player") return;
-
-        //PlayerGliderInput.AllowInput = true;
-        OnPlayerExit?.Invoke();
+    private void OnTriggerEnter(Collider player) {
+        player.gameObject.TryGetComponent<IGlide>(out var glidePlayer);
+        glidePlayer.Impulse(_maxHeight);
     }
 
 }

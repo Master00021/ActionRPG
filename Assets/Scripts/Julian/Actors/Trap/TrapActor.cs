@@ -1,33 +1,36 @@
+using System.Collections;
 using UnityEngine;
 
-internal sealed class TrapActor : MonoBehaviour {
+internal sealed class TrapActor : MonoBehaviour, ITrap {
     
-    [SerializeField] private bool _playOnStart;
     [SerializeField] private TrapConfiguration _trapConfiguration;
-    [SerializeField] private Trap _trap;
+    [SerializeField] private Rigidbody _rigidBody;
 
-    private Rigidbody _rigidBody;
-    private bool _isPlaying;
+    public void Stun(float stunTime) {
+        _rigidBody.isKinematic = true;
 
-    private void Awake() {
-        if (_playOnStart) {
-            Play();
+        StartCoroutine(CO_WaitForStunTimeEnd());
+
+        IEnumerator CO_WaitForStunTimeEnd() {
+            while (stunTime > 0.0f) {
+                stunTime -= Time.deltaTime;
+                yield return null;
+            }
+            _rigidBody.isKinematic = false;
         }
     }
 
-    private void OnDisable() {
-        _trap?.Disable();
-    }
+    public void Reactivate(GameObject trap, float timeToReactivate) {
 
-    private void Update() {
-        _trap.Explode();
-        _trap.BossStun();
-        _trap.ReactivateTrap();
-    }
+        StartCoroutine(CO_WaitToReactivate());
 
-    private void Play() {
-        _rigidBody = GetComponent<Rigidbody>();
-        _trap = new(_trapConfiguration, _rigidBody);   
+        IEnumerator CO_WaitToReactivate() {
+            while (timeToReactivate > 0.0f) {
+                timeToReactivate -= Time.deltaTime;
+                yield return null;
+            }
+            trap.SetActive(true);
+        }
     }
     
 }

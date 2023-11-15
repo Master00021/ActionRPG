@@ -1,17 +1,14 @@
 using UnityEngine;
-using System;
 
-internal sealed class TrapObject : Interactable {
+internal sealed class TrapObject : MonoBehaviour {
 
-    internal static event Action<GameObject, GameObject> OnActorDetected;
+    [SerializeField] private TrapConfiguration _trapConfiguration;
 
-    protected override void Awake() {
-        base.Awake();
-    }
-
-    internal override void Interact(GameObject actor) {
-        if (actor.tag != "MiniBoss") return;
-        OnActorDetected?.Invoke(actor, gameObject);
+    private void OnTriggerEnter(Collider other) {
+        other.TryGetComponent<ITrap>(out var trapActor);
+        trapActor.Stun(_trapConfiguration.BossStunTime);
+        trapActor.Reactivate(gameObject, _trapConfiguration.TimeToReactivate);
+        gameObject.SetActive(false);
     }
 
 }
