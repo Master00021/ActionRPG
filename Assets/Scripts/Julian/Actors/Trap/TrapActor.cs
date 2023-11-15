@@ -22,7 +22,7 @@ internal sealed class TrapActor : MonoBehaviour {
     private void Update() {
         _trap.Explode();
         _trap.BossStun();
-        _trap.ActivateTrap();
+        _trap.ReactivateTrap();
     }
 
     private void Play() {
