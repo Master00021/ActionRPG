@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 
-internal sealed class PlayerGliderInput : MonoBehaviour
+internal sealed class GlideInput : MonoBehaviour
 {
 
     internal static event Action<float, float> OnPlayerMovement;

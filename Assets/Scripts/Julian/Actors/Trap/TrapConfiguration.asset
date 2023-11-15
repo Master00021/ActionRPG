@@ -9,10 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2692aa1e914ecac4eb44ae5ac13d1b3a, type: 3}
-  m_Name: GlideConfiguration
+  m_Script: {fileID: 11500000, guid: d31656dac3f263c4ca932be71e43272a, type: 3}
+  m_Name: TrapConfiguration
   m_EditorClassIdentifier: 
-  ImpulseForce: 2000
-  GlideSpeed: 7.5
-  GravityForce: 9.81
-  NormalPlayer: 0
+  ExplosionRadius: 5
+  ExplosionOffset: 1
+  UpWardsModifier: 10
+  DeactivateTime: 5
+  ExplosionForce: 25
+  BossStunTime: 2
+  Exploded: 0

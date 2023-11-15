@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-internal sealed class PlayerGlide {
+internal sealed class Glide {
 
     private GlideConfiguration _glideConfiguration;
     private GlideStatus _glideStatus;
@@ -10,7 +10,7 @@ internal sealed class PlayerGlide {
     private float _horizontalInput;
     private float _verticalInput;
 
-    public PlayerGlide(GlideConfiguration glideConfiguration, GlideStatus glideStatus, Rigidbody rigidBody, LayerMask groundLayerMask) {
+    public Glide(GlideConfiguration glideConfiguration, GlideStatus glideStatus, Rigidbody rigidBody, LayerMask groundLayerMask) {
         _glideConfiguration = glideConfiguration;
         _glideStatus = glideStatus;
         _playerRigidBody = rigidBody;
@@ -18,13 +18,13 @@ internal sealed class PlayerGlide {
 
         _glideStatus.UpdateGlideState(GlideState.Normal, GlideState.Normal);
 
-        PlayerGliderInput.OnPlayerMovement += GetPlayerAxis;
+        GlideInput.OnPlayerMovement += GetPlayerAxis;
         GlideObject.OnPlayerEntry += UpdateToImpulseState;
         GlideObject.OnPlayerExit += UpdateToGlideState;
     }
 
     internal void Disable() {
-        PlayerGliderInput.OnPlayerMovement -= GetPlayerAxis;
+        GlideInput.OnPlayerMovement -= GetPlayerAxis;
         GlideObject.OnPlayerEntry -= UpdateToImpulseState;
         GlideObject.OnPlayerExit -= UpdateToGlideState;
     }
@@ -51,7 +51,7 @@ internal sealed class PlayerGlide {
         _playerRigidBody.drag = 5.0f;
 
         var moveDirection = new Vector3(_horizontalInput, 0.0f, _verticalInput);
-        _playerRigidBody.transform.position += new Vector3(moveDirection.x, 0.0f, moveDirection.z) * Time.deltaTime; 
+        _playerRigidBody.transform.position += new Vector3(moveDirection.x * _glideConfiguration.GlideSpeed, 0.0f, moveDirection.z * _glideConfiguration.GlideSpeed) * Time.deltaTime; 
 
         _glideConfiguration.NormalPlayer = Physics.Raycast(_playerRigidBody.transform.position, 
                                                            -_playerRigidBody.transform.up, 1.5f, _groundLayerMask);

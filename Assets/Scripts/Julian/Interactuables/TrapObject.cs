@@ -1,9 +1,9 @@
-using System;
 using UnityEngine;
+using System;
 
-internal sealed class Trap : Interactable
-{
-    internal static event Action OnMiniBossDetected;
+internal sealed class TrapObject : Interactable {
+
+    internal static event Action<GameObject, GameObject> OnActorDetected;
 
     protected override void Awake() {
         base.Awake();
@@ -11,8 +11,7 @@ internal sealed class Trap : Interactable
 
     internal override void Interact(GameObject actor) {
         if (actor.tag != "MiniBoss") return;
-
-        OnMiniBossDetected?.Invoke();
+        OnActorDetected?.Invoke(actor, gameObject);
     }
 
 }

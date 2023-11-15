@@ -2,7 +2,7 @@ using static Unity.Mathematics.math;
 using UnityEngine;
 using System;
 
-internal sealed class Actor : MonoBehaviour
+internal sealed class GlideableActor : MonoBehaviour
 {
 
     [SerializeField] private bool _playOnStart;
@@ -10,8 +10,8 @@ internal sealed class Actor : MonoBehaviour
     [SerializeField] private GlideConfiguration _glideConfiguration;
     [SerializeField] private Rigidbody _playerRigidBody;
     [SerializeField] private LayerMask _groundLayerMask;
-    [SerializeField] private PlayerGlide _playerGlide; 
     [SerializeField] private GlideStatus _glideStatus;   
+    [SerializeField] private Glide _glide; 
 
     private bool _isPlaying;
 
@@ -21,21 +21,21 @@ internal sealed class Actor : MonoBehaviour
         }
     }
 
-    private void Update() {
-        _playerGlide.ImpulsePlayer(_glideStatus.Current);
-        _playerGlide.GlidePlayer(_glideStatus.Current, _glideStatus.Previous);
-        _playerGlide.BackPlayerToNormal(_glideStatus.Current);
+    private void OnDisable() {
+        _glide?.Disable();
     }
 
-    private void OnDisable() {
-        _playerGlide?.Disable();
+    private void Update() {
+        _glide.ImpulsePlayer(_glideStatus.Current);
+        _glide.GlidePlayer(_glideStatus.Current, _glideStatus.Previous);
+        _glide.BackPlayerToNormal(_glideStatus.Current);
     }
 
     private void Play() {
         if (_isPlaying) return;
         _isPlaying = true;
 
-        _playerGlide = new(_glideConfiguration, _glideStatus, _playerRigidBody, _groundLayerMask);        
+        _glide = new(_glideConfiguration, _glideStatus, _playerRigidBody, _groundLayerMask);  
     }
 
 }
