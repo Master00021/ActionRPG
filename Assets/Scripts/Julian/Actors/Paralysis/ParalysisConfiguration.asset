@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6917f01df742e5546abe61e201aa76cf, type: 3}
   m_Name: ParalysisConfiguration
   m_EditorClassIdentifier: 
-  TimeToEndParalysis: 5
-  TimeToReactivate: 10
-  Activated: 0
+  TimeToStop: 5
+  Activated: 1
