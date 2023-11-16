@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-internal sealed class GlidePlayer : MonoBehaviour, IGlide {
+internal sealed class GlideActor : MonoBehaviour, IGlide {
 
     [SerializeField] private GlideConfiguration _glideConfiguration;
     [SerializeField] private Rigidbody _playerRigidBody;

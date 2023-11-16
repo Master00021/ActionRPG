@@ -13,8 +13,7 @@ GameObject:
   - component: {fileID: 4085332448355518894}
   - component: {fileID: 4085332448355518893}
   - component: {fileID: 4085332448355518891}
-  - component: {fileID: 1972008873512714690}
-  - component: {fileID: 4085332448355518889}
+  - component: {fileID: 1061296179}
   m_Layer: 0
   m_Name: PlayerGlide
   m_TagString: Player
@@ -117,7 +116,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &1972008873512714690
+--- !u!114 &1061296179
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -126,28 +125,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4085332448355518888}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd6da4bf5158ebb45a45ca751296f1df, type: 3}
+  m_Script: {fileID: 11500000, guid: 0653014ffc911e848b6ee77fb2ffcfc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enableInputOnAwake: 0
-  _horizontalInput: 0
-  _verticalInput: 0
---- !u!114 &4085332448355518889
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4085332448355518888}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c00bb797a0972442909d1dd91fdeb4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _playOnStart: 1
   _glideConfiguration: {fileID: 11400000, guid: 55189de9f60f9a94e9eb14f93020fd89, type: 2}
   _playerRigidBody: {fileID: 4085332448355518891}
   _groundLayerMask:
     serializedVersion: 2
     m_Bits: 8
-  _glideStatus: {fileID: 6542274607932301569, guid: 0fc12b9ef477d8e4887ba91195dd6880, type: 3}
