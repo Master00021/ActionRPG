@@ -20,6 +20,8 @@ internal sealed class ParalysisObject : MonoBehaviour {
     }
     
     private void OnTriggerEnter(Collider other) {
+        if (!other.TryGetComponent<IParalyze>(out var paralizable)) return;
+        
         if (other.CompareTag("Attack") && !_activated) {
             _activated = true;
 
