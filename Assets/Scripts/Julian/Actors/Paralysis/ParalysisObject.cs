@@ -23,15 +23,18 @@ internal sealed class ParalysisObject : MonoBehaviour {
         if (other.CompareTag("Attack") && !_activated) {
             _activated = true;
 
+            var rigidbody = other.GetComponent<Rigidbody>();
             gameObject.GetComponent<BoxCollider>().size = _paralysisArea;
 
             other.TryGetComponent<IParalyze>(out var actor);
-            actor.Paralyze(configuration, configuration.TimeToStop, _activated);
+            actor.Paralyze(configuration, rigidbody, configuration.TimeToStop, _activated);
         }
 
         if (!other.CompareTag("Attack") && _activated) {
+            var rigidbody = other.GetComponent<Rigidbody>();
+            
             other.TryGetComponent<IParalyze>(out var actor);
-            actor.Paralyze(configuration, configuration.TimeToStop, _activated);
+            actor.Paralyze(configuration, rigidbody, configuration.TimeToStop, _activated);
         }
     }
 

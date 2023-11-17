@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: TrapConfiguration
   m_EditorClassIdentifier: 
   TimeToReactivate: 4
-  BossStunTime: 2
+  StunTime: 2

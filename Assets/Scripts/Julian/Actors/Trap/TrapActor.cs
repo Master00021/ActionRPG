@@ -3,11 +3,8 @@ using UnityEngine;
 
 internal sealed class TrapActor : MonoBehaviour, ITrap {
     
-    [SerializeField] private TrapConfiguration _trapConfiguration;
-    [SerializeField] private Rigidbody _rigidBody;
-
-    public void Stun(float stunTime) {
-        _rigidBody.isKinematic = true;
+    public void Stun(Rigidbody rigidbody, float stunTime) {
+        rigidbody.isKinematic = true;
 
         StartCoroutine(CO_WaitForStunTimeEnd());
 
@@ -16,11 +13,11 @@ internal sealed class TrapActor : MonoBehaviour, ITrap {
                 stunTime -= Time.deltaTime;
                 yield return null;
             }
-            _rigidBody.isKinematic = false;
+            rigidbody.isKinematic = false;
         }
     }
 
-    public void Reactivate(GameObject trap, float timeToReactivate) {
+    public void Reactivate(TrapConfiguration configuration, GameObject trap, float timeToReactivate) {
 
         StartCoroutine(CO_WaitToReactivate());
 
