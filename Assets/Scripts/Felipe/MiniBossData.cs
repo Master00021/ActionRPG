@@ -25,10 +25,14 @@ public class MiniBossData : MonoBehaviour
     {
         currentHealth = maxHealth;
     }
-
+    
     // Lógica de actualización por cada frame
     void Update()
     {
+        if(currentHealth <= 50f)
+        {
+            isEnraged = true;
+        }
         if (isKnockedDown)
         {
             // Lógica de estar derribado

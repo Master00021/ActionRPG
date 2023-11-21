@@ -7,6 +7,8 @@ public class MiniBossPatron : MonoBehaviour
 {
     public MiniBossData miniboss;
     public float timer;
+    public Animator Anim;
+    public bool EnableTimer;
     public enum AttackPattern
     {
         Normal,
@@ -36,19 +38,25 @@ public class MiniBossPatron : MonoBehaviour
     // Lógica de actualización por cada frame
     void Update()
     {
-        timer -= Time.deltaTime;
-        if(timer <= 0)
+        if(EnableTimer == true)
         {
-            PerformAttack();
-       
+            timer -= Time.deltaTime;      
         }
-        
-    }
-    private void Cooldown()
-    {
 
+        if (timer <= 0)
+        {
+            PerformAttack();     
+        }      
     }
     // Lógica para realizar ataques
+    public void EnableTime()
+    {
+        EnableTimer = true;
+    }
+    public void DisableTime()
+    {
+        EnableTimer = false;
+    }
     private void PerformAttack()
     {
         if (timer >= 0) return;
@@ -76,23 +84,22 @@ public class MiniBossPatron : MonoBehaviour
     // Lógica para el ataque normal
     void NormalAttack()
     {
-        
-        Debug.Log("Ataque normal");
+        Anim.SetBool("Patron1", true);
+        Debug.Log("Ataque normal");     
     }
 
     // Lógica para el ataque especial 1
     void SpecialAttack1()
     {
-        // Lógica del primer ataque especial
-        // ...
+        Anim.SetBool("Patron2", true);
         Debug.Log("Ataque especial 1");
+        
     }
 
     // Lógica para el ataque especial 2
     void SpecialAttack2()
     {
-        // Lógica del segundo ataque especial
-        // ...
+        Anim.SetBool("Patron3", true);
         Debug.Log("Ataque especial 2");
     }
 
