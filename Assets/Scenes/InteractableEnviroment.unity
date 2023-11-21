@@ -383,7 +383,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &361150044
 Transform:
   m_ObjectHideFlags: 0
@@ -1617,6 +1617,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 562449263}
     m_Modifications:
+    - target: {fileID: 7575014976655630865, guid: 2874027a8a590604e9be4e63001fbe7c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7575014976655630868, guid: 2874027a8a590604e9be4e63001fbe7c, type: 3}
       propertyPath: m_Name
       value: ParalysisObject
