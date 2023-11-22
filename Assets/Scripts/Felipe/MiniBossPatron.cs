@@ -27,8 +27,7 @@ public class MiniBossPatron : MonoBehaviour
     // Lógica de inicialización
     void Start()
     {
-        currentAttackPattern = AttackPattern.Normal;
-        InvokeRepeating("PerformAttack", 0f, normalAttackDelay);
+       
     }
     private void Awake()
     {
@@ -39,7 +38,11 @@ public class MiniBossPatron : MonoBehaviour
     // Lógica de actualización por cada frame
     void Update()
     {
-        if(EnableTimer == true)
+        if(MiniDetect.StayAlert == true)
+        {
+            CurretPattern();
+        }
+        if(EnableTimer == true && MiniDetect.StayAlert == true)
         {
             timer -= Time.deltaTime;      
         }
@@ -48,6 +51,11 @@ public class MiniBossPatron : MonoBehaviour
         {
             PerformAttack();     
         }      
+    }
+    private void CurretPattern()
+    {
+        currentAttackPattern = AttackPattern.Normal;
+        InvokeRepeating("PerformAttack", 0f, normalAttackDelay);
     }
     // Lógica para realizar ataques
     public void EnableTime()
@@ -107,7 +115,7 @@ public class MiniBossPatron : MonoBehaviour
     // Cambia el patrón de ataque según las condiciones y estados del miniboss
     void ChangeAttackPattern()
     {
-        if (miniboss.isEnraged && (MiniDetect.StayAlert = tr)
+        if (miniboss.isEnraged && (MiniDetect.StayAlert = true))
         {
             // Lógica para patrones de ataque cuando el miniboss está enfurecido
             // ...

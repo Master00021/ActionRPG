@@ -26,6 +26,7 @@ public class MiniBossDetect : MonoBehaviour
     {
         if(StayAlert == true)
         {
+           
             anim.SetBool("SleepEnd", true);
         }
     }
