@@ -6,6 +6,7 @@ using UnityEngine.Animations;
 public class MiniBossPatron : MonoBehaviour
 {
     public MiniBossData miniboss;
+    public MiniBossDetect MiniDetect;
     public float timer;
     public Animator Anim;
     public bool EnableTimer;
@@ -106,7 +107,7 @@ public class MiniBossPatron : MonoBehaviour
     // Cambia el patrón de ataque según las condiciones y estados del miniboss
     void ChangeAttackPattern()
     {
-        if (miniboss.isEnraged)
+        if (miniboss.isEnraged && (MiniDetect.StayAlert = tr)
         {
             // Lógica para patrones de ataque cuando el miniboss está enfurecido
             // ...
