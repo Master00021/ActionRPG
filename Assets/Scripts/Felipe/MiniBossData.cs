@@ -15,7 +15,10 @@ public class MiniBossData : MonoBehaviour
     public float damageThresholdForKnockdown = 50f;
     public float knockdownDuration = 5f;
 
-
+    public bool IsAttackin;
+    public bool ReturnSpawn;
+    public bool InSpawn;
+    public bool CanAttack;
     public bool isEnraged = false;
     public bool isExhausted = false;
     public bool isKnockedDown = false;

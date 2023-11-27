@@ -5,11 +5,12 @@ using UnityEngine.Animations;
 
 public class MiniBossPatron : MonoBehaviour
 {
-    public MiniBossData miniboss;
+    public MiniBossData MiniData;
     public MiniBossDetect MiniDetect;
-    public float timer;
     public Animator Anim;
-    public bool EnableTimer;
+    public GameObject Player;
+    public GameObject Spawn;
+    
     public enum AttackPattern
     {
         Normal,
@@ -29,28 +30,51 @@ public class MiniBossPatron : MonoBehaviour
     {
        
     }
-    private void Awake()
-    {
 
-        timer = miniboss.exhaustedRecoveryTime;
-        
-    }
     // Lógica de actualización por cada frame
     void Update()
     {
-        if(MiniDetect.StayAlert == true)
+        if (MiniData.ReturnSpawn == true)
         {
+            MiniData.exhaustedRecoveryTime -= Time.deltaTime;
+            if (MiniData.exhaustedRecoveryTime == 0)
+            {
+                MiniData.exhaustedRecoveryTime = 0;
+            }
+        }
+        if (MiniDetect.StayAlert == true && MiniData.CanAttack == true && MiniData.IsAttackin == false)
+        {
+            Anim.SetFloat("Walk", 0);
             CurretPattern();
+            print("currentpater");
         }
-        if(EnableTimer == true && MiniDetect.StayAlert == true)
+        if (MiniData.CanAttack == true && MiniData.IsAttackin == false)
         {
-            timer -= Time.deltaTime;      
+            
+            Anim.SetFloat("Walk", 0);
+            PerformAttack();
+            print("performatack");
         }
+        if (MiniData.ReturnSpawn == true)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, Spawn.transform.position, MiniData.Velocity * Time.deltaTime);
+            MiniData.CanAttack = false;
+        }
+        if (transform.position == Spawn.transform.position)
+        {
+            MiniData.ReturnSpawn = false;
+            MiniData.InSpawn = true;
+            if (MiniData.exhaustedRecoveryTime == 0)
+            {
+                MiniData.IsAttackin = false;
 
-        if (timer <= 0)
-        {
-            PerformAttack();     
-        }      
+            }
+
+            
+        }
+       
+
+        
     }
     private void CurretPattern()
     {
@@ -58,17 +82,10 @@ public class MiniBossPatron : MonoBehaviour
         InvokeRepeating("PerformAttack", 0f, normalAttackDelay);
     }
     // Lógica para realizar ataques
-    public void EnableTime()
-    {
-        EnableTimer = true;
-    }
-    public void DisableTime()
-    {
-        EnableTimer = false;
-    }
+
     private void PerformAttack()
     {
-        if (timer >= 0) return;
+       
 
         // Comprobamos el patrón de ataque actual y realizamos la acción correspondiente
         switch (currentAttackPattern)
@@ -85,7 +102,7 @@ public class MiniBossPatron : MonoBehaviour
             default:
                 break;
         }
-        timer = miniboss.exhaustedRecoveryTime;
+        //timer = MiniData.exhaustedRecoveryTime;
         // Cambiamos al siguiente patrón de ataque
         ChangeAttackPattern();
     }
@@ -93,6 +110,9 @@ public class MiniBossPatron : MonoBehaviour
     // Lógica para el ataque normal
     void NormalAttack()
     {
+        if (MiniData.IsAttackin == true)
+            return;
+        MiniData.IsAttackin = true;
         Anim.SetBool("Patron1", true);
         Debug.Log("Ataque normal");     
     }
@@ -100,6 +120,9 @@ public class MiniBossPatron : MonoBehaviour
     // Lógica para el ataque especial 1
     void SpecialAttack1()
     {
+        if (MiniData.IsAttackin == true)
+            return;
+        MiniData.IsAttackin = true;
         Anim.SetBool("Patron2", true);
         Debug.Log("Ataque especial 1");
         
@@ -108,6 +131,9 @@ public class MiniBossPatron : MonoBehaviour
     // Lógica para el ataque especial 2
     void SpecialAttack2()
     {
+        if (MiniData.IsAttackin == true)
+            return;
+        MiniData.IsAttackin = true;
         Anim.SetBool("Patron3", true);
         Debug.Log("Ataque especial 2");
     }
@@ -115,13 +141,13 @@ public class MiniBossPatron : MonoBehaviour
     // Cambia el patrón de ataque según las condiciones y estados del miniboss
     void ChangeAttackPattern()
     {
-        if (miniboss.isEnraged && (MiniDetect.StayAlert = true))
+        if (MiniData.isEnraged && (MiniDetect.StayAlert = true))
         {
             // Lógica para patrones de ataque cuando el miniboss está enfurecido
             // ...
             currentAttackPattern = (AttackPattern)Random.Range(1, 3); // Selecciona aleatoriamente entre SpecialAttack1 y SpecialAttack2
         }
-        else if (miniboss.isExhausted)
+        else if (MiniData.isExhausted)
         {
             // Lógica para patrones de ataque cuando el miniboss está agotado
             // ...
@@ -150,5 +176,15 @@ public class MiniBossPatron : MonoBehaviour
             default:
                 break;
         }
+    }
+    public void Return()
+    {
+       
+        MiniData.ReturnSpawn = true;
+    }
+    public void NoAttack()
+    {
+        MiniData.CanAttack = false;
+       
     }
 }
