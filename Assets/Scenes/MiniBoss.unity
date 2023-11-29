@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -341,7 +341,6 @@ GameObject:
   m_Component:
   - component: {fileID: 877302943}
   - component: {fileID: 877302942}
-  - component: {fileID: 877302944}
   m_Layer: 0
   m_Name: RageRaduis
   m_TagString: Untagged
@@ -377,34 +376,6 @@ Transform:
   m_Father: {fileID: 8753619234841862003}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &877302944
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 877302941}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3add6a88e88c494091d8d24a0e95a7f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Minibos: {fileID: 8753619234841862003}
-  ObjetcFind: {fileID: 0}
-  MiniData: {fileID: 8753619234841862006}
-  MiniPatron: {fileID: 8753619234841862008}
-  anim: {fileID: 8753619234834116789}
-  RangeAlert: 13
-  AnimationDelay: 1
-  StayAlert: 0
-  Awaken: 0
-  LayerPlayer:
-    serializedVersion: 2
-    m_Bits: 128
-  LayerEnemy:
-    serializedVersion: 2
-    m_Bits: 256
-  SphereCollider: {fileID: 877302942}
 --- !u!1 &1144128864
 GameObject:
   m_ObjectHideFlags: 0
@@ -530,7 +501,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1350875321}
   - component: {fileID: 1350875323}
-  - component: {fileID: 1350875322}
+  - component: {fileID: 1350875324}
   m_Layer: 0
   m_Name: AttackArea
   m_TagString: Untagged
@@ -553,21 +524,6 @@ Transform:
   m_Father: {fileID: 8753619234841862003}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1350875322
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1350875320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee8d40192a7a98241adda5e2f1cbc628, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MiniData: {fileID: 8753619234841862006}
-  MiniPatron: {fileID: 8753619234841862008}
-  MiniDetect: {fileID: 877302944}
 --- !u!65 &1350875323
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -579,8 +535,42 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.94, z: 0.65}
+  m_Size: {x: 1, y: 0.94, z: 1.41}
   m_Center: {x: 0, y: 0.5, z: 0.66}
+--- !u!114 &1350875324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1350875320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8da0100e47ef8bb4fadc31e456e15751, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tagToDetect: Player
+  _onTriggerEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8753619234841862004}
+        m_TargetAssemblyTypeName: Boss, Assembly-CSharp
+        m_MethodName: Attack
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1350875323}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Collider, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onTriggerStay:
+    m_PersistentCalls:
+      m_Calls: []
+  _onTriggerExit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1880483001
 GameObject:
   m_ObjectHideFlags: 0
@@ -770,7 +760,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2121086403}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.34302664, y: 2.9806495, z: 13.71}
+  m_LocalPosition: {x: 0.34302664, y: 2.9806495, z: 15.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -917,9 +907,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8753619234841862003}
   - component: {fileID: 8753619234834116789}
-  - component: {fileID: 8753619234841862008}
-  - component: {fileID: 8753619234841862006}
   - component: {fileID: 6464614735169156468}
+  - component: {fileID: 8753619234841862004}
   m_Layer: 0
   m_Name: Golem
   m_TagString: Untagged
@@ -1282,7 +1271,7 @@ Transform:
   - {fileID: 8753619234841862005}
   m_Father: {fileID: 8753619234841862003}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: -0.000008537736, y: 89.99998, z: -95.80309}
+  m_LocalEulerAnglesHint: {x: -0.000006830189, y: 89.99995, z: -95.80309}
 --- !u!4 &8753619234841861961
 Transform:
   m_ObjectHideFlags: 0
@@ -1505,6 +1494,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8753619234841862004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8753619234841494291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f3082a190418e543b2ec63f4144d187, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BossAttacks:
+  - {fileID: 5308366474734574852, guid: d22518ec897de8447bc344a0d1e4a5d5, type: 3}
+  - {fileID: 3722747810836819583, guid: 53396c767be458b489814ee182b4efad, type: 3}
+  DamageBoss: 50
 --- !u!4 &8753619234841862005
 Transform:
   m_ObjectHideFlags: 0
@@ -1521,35 +1526,6 @@ Transform:
   m_Father: {fileID: 8753619234841861959}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 84.19687, y: 89.99966, z: -65.86544}
---- !u!114 &8753619234841862006
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8753619234841494291}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b81534f4ad973e4f956d817c8eb644c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  currentHealth: 0
-  energy: 100
-  maxEnergy: 100
-  Velocity: 4
-  damageThresholdForEnrage: 20
-  enrageDuration: 100
-  exhaustedRecoveryTime: 5
-  damageThresholdForKnockdown: 50
-  knockdownDuration: 5
-  IsAttackin: 0
-  ReturnSpawn: 0
-  InSpawn: 0
-  CanAttack: 0
-  isEnraged: 0
-  isExhausted: 0
-  isKnockedDown: 0
 --- !u!4 &8753619234841862007
 Transform:
   m_ObjectHideFlags: 0
@@ -1566,23 +1542,3 @@ Transform:
   m_Father: {fileID: 8753619234841861963}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 21.675795}
---- !u!114 &8753619234841862008
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8753619234841494291}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 055960f140294bb41adb38c5cf408d35, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MiniData: {fileID: 8753619234841862006}
-  MiniDetect: {fileID: 877302944}
-  Anim: {fileID: 8753619234834116789}
-  Player: {fileID: 2121086403}
-  Spawn: {fileID: 1144128864}
-  normalAttackDelay: 2
-  specialAttack1Delay: 4
-  specialAttack2Delay: 3
