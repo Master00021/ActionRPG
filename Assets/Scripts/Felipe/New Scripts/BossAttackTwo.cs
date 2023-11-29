@@ -7,7 +7,7 @@ public class BossAttackTwo : Attack
     public override void UseAttack(Animator animator)
     {
      
-        animator.Play("Patron2");
+        animator.CrossFade("attack2", 0.1f);
 
 
     }

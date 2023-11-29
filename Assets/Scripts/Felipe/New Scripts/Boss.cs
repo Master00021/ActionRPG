@@ -15,9 +15,13 @@ public class Boss : MonoBehaviour
         nextAttack.UseAttack(animator);
         print($"ataqué con: {nextAttack.name}");
 
-        if(nextAttack.name == "AttackInvulnerable")
+        if(nextAttack.name == "Ataque 3")
         {
             BossData.invulnerable = true;
+        }
+        else
+        {
+            BossData.invulnerable = false;
         }
 
         if(other.TryGetComponent<IDamageable>(out var damageable))
