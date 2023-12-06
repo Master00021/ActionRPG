@@ -11,5 +11,5 @@ public class BossData : ScriptableObject
 
     public bool invulnerable;
     public bool Inrage;
-    
+    public bool IsTired;
 }

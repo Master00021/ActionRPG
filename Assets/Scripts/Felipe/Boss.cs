@@ -22,6 +22,11 @@ public class Boss : MonoBehaviour, IDamageable
     public void FixedUpdate()
     {
         BossData.health += BossData.healrecoverispeed;
+        if (BossData.health >= 1000f)
+        {
+            BossData.health = 1000f;
+        }
+        
 
     }
 

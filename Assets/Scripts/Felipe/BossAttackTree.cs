@@ -7,9 +7,19 @@ public class BossAttackTree : Attack
 
     public override void UseAttack(Animator animator)
     {
-
-        animator.CrossFade("attack4_kick", 0.1f);
         BossData.stamina -= StanminaSpent;
+        if (BossData.stamina >= 0.0f)
+        {
+            animator.CrossFade("attack4_kick", 0.1f);
+
+        }
+        else
+        {
+            animator.CrossFade("idle", 0.1f);
+            BossData.IsTired = true;
+            OnBossTired?.Invoke();
+        }
+
     }
    
 }
