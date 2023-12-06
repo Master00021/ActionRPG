@@ -9,6 +9,22 @@ public class Boss : MonoBehaviour, IDamageable
     public Animator animator;
     public BossData BossData;
 
+    private void Awake()
+    {
+        BossData.health = 1000f;
+        BossData.stamina = 100f;
+        BossData.invulnerable = false;
+        BossData.Inrage = false;
+        BossData.healrecoverispeed = 10f;
+        BossData.staminarecoverispeed = 7.5f;
+    }
+
+    public void FixedUpdate()
+    {
+        BossData.health += BossData.healrecoverispeed;
+
+    }
+
     public void Attack(Collider other)
     {
         var nextAttack = BossAttacks[UnityEngine.Random.Range(0, BossAttacks.Count)];
@@ -26,7 +42,13 @@ public class Boss : MonoBehaviour, IDamageable
 
         if(other.TryGetComponent<IDamageable>(out var damageable))
         {
+            if(BossData.stamina <= 0.0f)
+            {
+
+                return;
+            }
             damageable.Damage(DamageBoss);
+           
         }
     }
     public static event Action<float> OnDamagerecibe;

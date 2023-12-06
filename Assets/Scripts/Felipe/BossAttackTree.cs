@@ -9,6 +9,7 @@ public class BossAttackTree : Attack
     {
 
         animator.CrossFade("attack4_kick", 0.1f);
+        BossData.stamina -= StanminaSpent;
     }
    
 }

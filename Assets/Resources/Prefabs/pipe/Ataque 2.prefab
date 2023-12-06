@@ -44,4 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e929219709ed030419e6b05ac2afed19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Anim: {fileID: 0}
+  BossData: {fileID: 11400000, guid: 3cf00ad92383fe749a55bae709a80c04, type: 2}
+  StanminaSpent: 20

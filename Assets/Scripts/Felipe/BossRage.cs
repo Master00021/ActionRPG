@@ -8,6 +8,7 @@ public class BossRage : MonoBehaviour
     public float AcumulateDamage;
     public float TimerAcumulateDamage;
     public float Timer;
+    public float DamageToRage;
     public bool CorrutineStart;
 
     private void Awake()
@@ -25,23 +26,31 @@ public class BossRage : MonoBehaviour
     public void CalculateDamageRecibeInTime(float Damage)
     {
         AcumulateDamage += Damage;
-        if (CorrutineStart)
-        {
-            StartCoroutine(CO_TimetoResetDamage());
-
-        }
+        print("caculate");
+        StartCoroutine(CO_TimetoResetDamage());
+      
     }
     public IEnumerator CO_TimetoResetDamage()
     {
         CorrutineStart = true;
-        while (TimerAcumulateDamage > 0.0f)
+        if (CorrutineStart)
         {
-            Timer -= Time.deltaTime;
-            print(Timer);
-            yield return null; 
+           
+            while (Timer > 0.0f && AcumulateDamage != 0.0f)
+            {
+                Timer -= Time.deltaTime;
+                if(AcumulateDamage > DamageToRage)
+                {
+                    BossData.Inrage = true;
+                }
+                yield return null;
+            }
+            AcumulateDamage = 0.0f;
+            Timer = TimerAcumulateDamage;
+            CorrutineStart = false;
+
         }
-        AcumulateDamage = 0.0f;
-        Timer = TimerAcumulateDamage;
-        CorrutineStart = false;
+      
+        
     }
 }

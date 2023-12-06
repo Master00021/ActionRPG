@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4941e54124f8d64089e0f19012c7a3f, type: 3}
   m_Name: Boss Data
   m_EditorClassIdentifier: 
-  health: 10000
+  health: -63000
   healrecoverispeed: 10
-  stamina: 500
+  stamina: 100
   staminarecoverispeed: 5
   invulnerable: 0
+  Inrage: 0
