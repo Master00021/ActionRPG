@@ -13,6 +13,8 @@ public class EnemyMove : MonoBehaviour
     Animator animator;
     public Quaternion angulo;
 
+    public float leaderRadius = 7f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +29,7 @@ public class EnemyMove : MonoBehaviour
     }
     public void Comportamiento()
     {
-        if(Vector3.Distance(transform.position, target.transform.position) > 7)
+        if (Vector3.Distance(transform.position, target.transform.position) > 7)
         {
             animator.SetBool("run", false);
             cronometro += 1 * Time.deltaTime;
