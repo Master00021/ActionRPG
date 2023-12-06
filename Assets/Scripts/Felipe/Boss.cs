@@ -1,8 +1,8 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boss : MonoBehaviour
+public class Boss : MonoBehaviour, IDamageable
 {
     public List<Attack> BossAttacks;
     public float DamageBoss;
@@ -11,7 +11,7 @@ public class Boss : MonoBehaviour
 
     public void Attack(Collider other)
     {
-        var nextAttack = BossAttacks[Random.Range(0, BossAttacks.Count)];
+        var nextAttack = BossAttacks[UnityEngine.Random.Range(0, BossAttacks.Count)];
         nextAttack.UseAttack(animator);
         print($"ataqué con: {nextAttack.name}");
 
@@ -29,5 +29,11 @@ public class Boss : MonoBehaviour
             damageable.Damage(DamageBoss);
         }
     }
+    public static event Action<float> OnDamagerecibe;
 
+    public void Damage(float damage)
+    {
+        BossData.health -= damage;
+        OnDamagerecibe?.Invoke(damage);
+    }
 }

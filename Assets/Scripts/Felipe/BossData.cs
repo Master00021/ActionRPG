@@ -10,5 +10,6 @@ public class BossData : ScriptableObject
     public float staminarecoverispeed;
 
     public bool invulnerable;
+    public bool Inrage;
     
 }
