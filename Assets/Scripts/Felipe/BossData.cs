@@ -9,7 +9,7 @@ public class BossData : ScriptableObject
     public float stamina;
     public float staminarecoverispeed;
     public float DamageBoss;
-
+    public float Speed;
     public bool invulnerable;
     public bool Inrage;
     public bool IsTired;

@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 1000
   healrecoverispeed: 10
-  stamina: 35.698788
+  stamina: 100
   staminarecoverispeed: 7.5
-  DamageBoss: 25
+  DamageBoss: 10
+  Speed: 1000
   invulnerable: 0
   Inrage: 0
   IsTired: 0
