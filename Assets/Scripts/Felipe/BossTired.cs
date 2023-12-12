@@ -6,7 +6,7 @@ public class BossTired : MonoBehaviour
 {
     public float Timer;
     public float TiredTime;
-    public BossData BossData;
+    public BossData Bossdata;
     private void Awake()
     {
         Timer = TiredTime;
@@ -20,19 +20,21 @@ public class BossTired : MonoBehaviour
     {
         Attack.OnBossTired -= Tired;
     }
-
     public void Tired()
     {
+        Bossdata.stamina = 0f;
         StartCoroutine(CO_Tired());
+
     }
     public IEnumerator CO_Tired()
     {
-        while(Timer >= 0.0f) // estamina no timer
+        while(Bossdata.stamina <= 100f) // estamina no timer
         {
-            Timer -= Time.deltaTime;
+            Bossdata.stamina += Bossdata.staminarecoverispeed * Time.deltaTime;
             yield return null;
+
         }
-        BossData.IsTired = false;
+        Bossdata.IsTired = false;
         Timer = TiredTime;
 
 
