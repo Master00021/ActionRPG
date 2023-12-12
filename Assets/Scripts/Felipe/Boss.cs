@@ -39,7 +39,7 @@ public class Boss : MonoBehaviour, IDamageable
     {
         var nextAttack = BossAttacks[UnityEngine.Random.Range(0, BossAttacks.Count)];
         nextAttack.UseAttack(animator);
-        print($"ataqué con: {nextAttack.name}");
+        print($"ataquï¿½ con: {nextAttack.name}");
 
         if(nextAttack.name == "Ataque 3")
         {
@@ -52,7 +52,7 @@ public class Boss : MonoBehaviour, IDamageable
 
         if(other.TryGetComponent<IDamageable>(out var damageable))
         {
-            if(BossData.IsTired == true)
+            if(BossData.IsTired == true && BossData.Isfallen == true)
             {
 
                 return;
@@ -71,6 +71,7 @@ public class Boss : MonoBehaviour, IDamageable
     public void Fallen()
     {
         animator.CrossFade("death", 0.1f);
+        BossData.Isfallen = true;
         Onfallen?.Invoke();
     }
 }

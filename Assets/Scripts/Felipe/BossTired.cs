@@ -32,7 +32,7 @@ public class BossTired : MonoBehaviour
     }
     public IEnumerator CO_Tired()
     {
-        while(Bossdata.stamina <= 100f) // estamina no timer
+        while(Bossdata.stamina <= 100f)
         {
             Bossdata.stamina += Bossdata.staminarecoverispeed * Time.deltaTime;
            
