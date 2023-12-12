@@ -46,3 +46,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BossData: {fileID: 11400000, guid: 3cf00ad92383fe749a55bae709a80c04, type: 2}
   StanminaSpent: 20
+  Damage: 25
+  RageDamage: 30

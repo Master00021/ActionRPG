@@ -5,7 +5,6 @@ using UnityEngine;
 public class Boss : MonoBehaviour, IDamageable
 {
     public List<Attack> BossAttacks;
-    public float DamageBoss;
     public Animator animator;
     public BossData BossData;
 
@@ -13,14 +12,20 @@ public class Boss : MonoBehaviour, IDamageable
     {
         BossData.health = 1000f;
         BossData.stamina = 100f;
-        BossData.invulnerable = false;
-        BossData.Inrage = false;
         BossData.healrecoverispeed = 10f;
         BossData.staminarecoverispeed = 7.5f;
+        BossData.Inrage = false;
+        BossData.invulnerable = false;
+        BossData.IsTired = false;
+        BossData.Isfallen = false;
     }
 
     public void FixedUpdate()
     {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            Fallen();
+        }
         BossData.health += BossData.healrecoverispeed;
         if (BossData.health >= 1000f)
         {
@@ -47,20 +52,25 @@ public class Boss : MonoBehaviour, IDamageable
 
         if(other.TryGetComponent<IDamageable>(out var damageable))
         {
-            if(BossData.stamina <= 0.0f)
+            if(BossData.IsTired == true)
             {
 
                 return;
             }
-            damageable.Damage(DamageBoss);
+            damageable.Damage(BossData.DamageBoss);
            
         }
     }
     public static event Action<float> OnDamagerecibe;
-
+    public static event Action Onfallen;
     public void Damage(float damage)
     {
         BossData.health -= damage;
         OnDamagerecibe?.Invoke(damage);
+    }
+    public void Fallen()
+    {
+        animator.CrossFade("death", 0.1f);
+        Onfallen?.Invoke();
     }
 }

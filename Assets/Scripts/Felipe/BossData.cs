@@ -8,8 +8,10 @@ public class BossData : ScriptableObject
     public float healrecoverispeed;
     public float stamina;
     public float staminarecoverispeed;
+    public float DamageBoss;
 
     public bool invulnerable;
     public bool Inrage;
     public bool IsTired;
+    public bool Isfallen;
 }

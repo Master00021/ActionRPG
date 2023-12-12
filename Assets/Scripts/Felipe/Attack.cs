@@ -10,7 +10,8 @@ public abstract class Attack : MonoBehaviour
     public BossData BossData;
     public float StanminaSpent;
     public abstract void UseAttack(Animator animator);
-   
-    
+
+    public float Damage;
+    public float RageDamage;
 
 }

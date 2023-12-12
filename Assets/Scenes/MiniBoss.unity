@@ -640,6 +640,7 @@ MonoBehaviour:
   Timer: 0
   TiredTime: 5
   Bossdata: {fileID: 11400000, guid: 3cf00ad92383fe749a55bae709a80c04, type: 2}
+  Anim: {fileID: 1480996035}
 --- !u!1 &1880483001
 GameObject:
   m_ObjectHideFlags: 0
@@ -865,7 +866,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac01b07e32f332948ab1f5ba16972bca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 100
+  _health: 300
 --- !u!1001 &7252550019376663844
 PrefabInstance:
   m_ObjectHideFlags: 0
