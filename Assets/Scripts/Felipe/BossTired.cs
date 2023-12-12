@@ -17,12 +17,12 @@ public class BossTired : MonoBehaviour
     private void OnEnable()
     {
         Attack.OnBossTired += Tired;
-        Boss.Onfallen += Tired;
+        Boss.Onfallen += Fallen;
     }
     private void OnDisable()
     {
         Attack.OnBossTired -= Tired;
-        Boss.Onfallen -= Tired;
+        Boss.Onfallen -= Fallen;
     }
     public void Tired()
     {
@@ -32,15 +32,39 @@ public class BossTired : MonoBehaviour
     }
     public IEnumerator CO_Tired()
     {
+        Anim.CrossFade("idle", 0.4f);
+
         while(Bossdata.stamina <= 100f)
         {
             Bossdata.stamina += Bossdata.staminarecoverispeed * Time.deltaTime;
-           
+           Bossdata.IsAttacking = false;
+            yield return null;
+
+        }
+        Bossdata.IsTired = false;
+        
+
+
+
+    }
+
+    public void Fallen()
+    {
+        Bossdata.stamina = 0f;
+        StartCoroutine(CO_Fallen());
+
+    }
+    public IEnumerator CO_Fallen()
+    {
+        while(Bossdata.stamina <= 100f)
+        {
+            Bossdata.stamina += Bossdata.staminarecoverispeed * Time.deltaTime;
+           Bossdata.IsAttacking = false;
             yield return null;
 
         }
         Anim.CrossFade("idle", 0.4f);
-        Bossdata.IsTired = false;
+        Bossdata.Isfallen = false;
         
 
 

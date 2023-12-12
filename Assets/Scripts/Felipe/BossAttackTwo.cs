@@ -7,8 +7,11 @@ public class BossAttackTwo : Attack
     public override void UseAttack(Animator animator)
     {
         
-        if (BossData.stamina >= 0.0f && BossData.IsTired == false && BossData.Isfallen == false)
+        if (BossData.stamina >= 0.0f && BossData.IsTired == false && BossData.Isfallen == false && BossData.IsAttacking == false)
         {
+            BossData.IsAttacking = true;
+            BossData.IsWalking = false;
+
             BossData.stamina -= StanminaSpent;
             if (BossData.Inrage == true)
             {
@@ -20,9 +23,13 @@ public class BossAttackTwo : Attack
                 animator.speed = 1f;
                 BossData.DamageBoss = Damage;
             }
-            animator.CrossFade("attack2", 0.1f);
+            animator.CrossFade("Attack2", 0.1f);
 
         }
+        else {
+            BossData.IsAttacking = false;
+        }
+
         if (BossData.stamina <= 0.0f)
         {
             BossData.IsTired = true;

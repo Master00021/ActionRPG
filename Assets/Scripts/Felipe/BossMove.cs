@@ -2,27 +2,53 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
+
 public class BossMove : MonoBehaviour
 {
     public BossData Bossdata;
     public Animator anim;
-    private Rigidbody rigi;
-    public Transform targetPosition;
-    
-    private void Awake()
-    {
-        rigi = GetComponent<Rigidbody>();
+    public Transform target;
+    public Transform Spawn;
+
+    private bool InSpawn;
+
+    private void OnTriggerEnter(Collider other) {
+        if (other.CompareTag("Spawn")) {
+            InSpawn = true;
+            Bossdata.IsWalking = false;
+        }
     }
+
     public void Move()
     {
-        var direction = targetPosition.position - transform.position;
-        direction.y = 0.0f;
-        rigi.AddForce(direction * Bossdata.Speed * Time.deltaTime,ForceMode.Force);
-        anim.CrossFade("walk_forward", 0.1f);
+        if (Bossdata.IsAttacking == true || Bossdata.Isfallen == true || Bossdata.IsTired == true) return;
+        var direction = target.position - transform.position;
+        float angleVision = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(new Vector3(0.0f, angleVision, 0.0f));
+        transform.Translate(Vector3.forward * Bossdata.Speed * Time.deltaTime);
+
+        InSpawn = false;
+
+        if (Bossdata.IsWalking == false) {
+            anim.CrossFade("walk_forward", 0.1f);
+            Bossdata.IsWalking = true;
+        }
     }
     public void ReturnSpawn()
     {
+        anim.CrossFade("walk_forward", 0.1f);
+        StartCoroutine(CO_ReturnToSpawn());        
+    }
 
+    private IEnumerator CO_ReturnToSpawn() {
+        while (InSpawn == false) {
+            var direction = Spawn.position - transform.position;
+            float angleVision = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(new Vector3(0.0f, angleVision, 0.0f));
+            transform.Translate(Vector3.forward * Bossdata.Speed * Time.deltaTime);
+            yield return null;
+        }
+        anim.CrossFade("idle", 0.1f);
     }
    
 }

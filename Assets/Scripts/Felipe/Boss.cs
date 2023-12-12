@@ -18,6 +18,8 @@ public class Boss : MonoBehaviour, IDamageable
         BossData.invulnerable = false;
         BossData.IsTired = false;
         BossData.Isfallen = false;
+        BossData.IsAttacking = false;
+        BossData.IsWalking = false;
     }
 
     public void FixedUpdate()
@@ -31,12 +33,12 @@ public class Boss : MonoBehaviour, IDamageable
         {
             BossData.health = 1000f;
         }
-        
-
     }
 
     public void Attack(Collider other)
     {
+        if (BossData.Isfallen == true) return;
+        
         var nextAttack = BossAttacks[UnityEngine.Random.Range(0, BossAttacks.Count)];
         nextAttack.UseAttack(animator);
         print($"ataqu� con: {nextAttack.name}");
@@ -70,8 +72,11 @@ public class Boss : MonoBehaviour, IDamageable
     }
     public void Fallen()
     {
-        animator.CrossFade("death", 0.1f);
+        
         BossData.Isfallen = true;
+        BossData.IsAttacking = false;
+        BossData.IsWalking = false;
+        animator.CrossFade("death", 0.1f);
         Onfallen?.Invoke();
     }
 }

@@ -5,12 +5,16 @@ using System;
 
 public class BossAttackOne : Attack
 {
+    
+
     public override void UseAttack(Animator animator)
     {
         
-        if (BossData.stamina >= 0.0f && BossData.IsTired == false && BossData.Isfallen == false)
+        if (BossData.stamina >= 0.0f && BossData.IsTired == false && BossData.Isfallen == false && BossData.IsAttacking == false)
         {
-            
+            BossData.IsAttacking = true;
+            BossData.IsWalking = false;
+
             if (BossData.Inrage == true)
             {
                 animator.speed = 1.3f;
@@ -22,8 +26,9 @@ public class BossAttackOne : Attack
                 animator.speed = 1f;
                 BossData.DamageBoss = Damage;
             }
-            animator.CrossFade("attack1", 0.1f);
+            animator.CrossFade("Attack1", 0.1f);
 
+            
         }
         
         if (BossData.stamina <= 0.0f)
