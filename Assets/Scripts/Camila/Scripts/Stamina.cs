@@ -18,8 +18,8 @@ public class Stamina : MonoBehaviour
     private float regSt = 1f;
 
     //staminabar
-    private Image staminaProgress = null;
-    private CanvasGroup slider = null;
+    public Image staminaProgress = null;
+    public CanvasGroup slider = null;
 
     public PlayerController playerControl;
 

@@ -66,8 +66,6 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        walking = !Input.GetKeyDown(KeyCode.LeftShift);
-
         if(walking == true)
         {
             staminacontroller.isSprinting = false;
@@ -86,6 +84,11 @@ public class PlayerController : MonoBehaviour
                 walking = true;
             }
         }
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            playerAnim.SetInteger("Movement", 2);
+        }
     }
     public void Run()
     {
@@ -93,7 +96,7 @@ public class PlayerController : MonoBehaviour
         {
             walking = false;
             playerCC.Move(direction * Time.deltaTime * sprint);
-            playerAnim.SetInteger("Movement", 2);
+            staminacontroller.Sprinting();
         }
     }
 
