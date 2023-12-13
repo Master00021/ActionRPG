@@ -6,7 +6,7 @@ public class BossAttackTwo : Attack
 {
     public override void UseAttack(Animator animator)
     {
-        
+        if (BossData.Disabled) return;
         if (BossData.stamina >= 0.0f && BossData.IsTired == false && BossData.Isfallen == false && BossData.IsAttacking == false)
         {
             BossData.IsAttacking = true;

@@ -17,4 +17,6 @@ public class BossData : ScriptableObject
     public bool Isfallen;
     public bool IsAttacking;
     public bool IsWalking;
+
+    public bool Disabled;
 }

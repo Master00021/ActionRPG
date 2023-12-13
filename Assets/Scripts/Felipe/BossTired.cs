@@ -26,6 +26,7 @@ public class BossTired : MonoBehaviour
     }
     public void Tired()
     {
+        if (Bossdata.Disabled) return;
         Bossdata.stamina = 0f;
         StartCoroutine(CO_Tired());
 

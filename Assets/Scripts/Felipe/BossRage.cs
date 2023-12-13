@@ -25,6 +25,7 @@ public class BossRage : MonoBehaviour
     }
     public void CalculateDamageRecibeInTime(float Damage)
     {
+        if (BossData.Disabled) return;
         AcumulateDamage += Damage;
         print("caculate");
         StartCoroutine(CO_TimetoResetDamage());
@@ -35,7 +36,6 @@ public class BossRage : MonoBehaviour
         CorrutineStart = true;
         if (CorrutineStart)
         {
-           
             while (Timer > 0.0f && AcumulateDamage != 0.0f)
             {
                 Timer -= Time.deltaTime;
