@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public StaminaControl stamina;
 
+
     public CharacterController playerCC;
     public Animator playerANIM;
 
@@ -115,7 +116,7 @@ public class PlayerController : MonoBehaviour
 
 
         //dash
-        //si el mov es distinto a 0 gasta stamina y si se está moviendo y además sprint, se gasta más stamina, si sprint y no se mueve, entonces no gasta
+        //si el mov es distinto a 0 gasta stamina y si se estï¿½ moviendo y ademï¿½s sprint, se gasta mï¿½s stamina, si sprint y no se mueve, entonces no gasta
         if (Input.GetKeyDown(KeyCode.Space) && (horizontal != 0 || vertical != 0) && dashing == false)
         {
             stamina.ActionCost();

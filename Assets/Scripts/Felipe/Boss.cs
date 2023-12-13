@@ -22,6 +22,7 @@ public class Boss : MonoBehaviour, IDamageable, ITrap, IParalyze
         BossData.Isfallen = false;
         BossData.IsAttacking = false;
         BossData.IsWalking = false;
+        BossData.Disabled = false;
     }
 
     public void FixedUpdate()
